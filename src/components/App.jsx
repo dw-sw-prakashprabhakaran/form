@@ -118,31 +118,31 @@ class App extends React.Component{
                 <label>
                     First Name:
                 </label>
-                <input type="text" name="fname"  onChange={this.handleChange} required />
+                <input type="text" name="fname" value={this.state.data.fname}  onChange={this.handleChange} required />
                 <div className="errorMsg">{this.state.errors.fname}</div>
                 <label>
                     Last Name:
                     
                 </label>
-                <input type="text" name="lname" onChange={this.handleChange} />
+                <input type="text" name="lname" value={this.state.data.lname} onChange={this.handleChange} />
                 <div className="errorMsg">{this.state.errors.lname}</div>
                 <label>
                     Email:
                   
                 </label>
-                <input type="email" name="mail" onChange={this.handleChange} required />
+                <input type="email" name="mail" value={this.state.data.mail} onChange={this.handleChange} required />
                 <div className="errorMsg">{this.state.errors.mail}</div>
                 <label>
                     Password:
                    
                 </label>
-                <input type="password" name="password" onChange={this.handleChange} required />
+                <input type="password" name="password" value={this.state.data.password} onChange={this.handleChange} required />
                 <div className="errorMsg">{this.state.errors.password}</div>
                 <label>
                     DOB:
                   
                 </label>
-                <input type="date" name="dob" onChange={this.handleChange} />
+                <input type="date" name="dob" value={this.state.data.date} onChange={this.handleChange} />
                 <label>
                     Gender:
                   
@@ -163,7 +163,7 @@ class App extends React.Component{
                     Phone:
                    
                 </label>
-                <input type="number" name="phone" onChange={this.handleChange} />
+                <input type="number" name="phone" value={this.state.data.phone} onChange={this.handleChange} />
                 <div className="errorMsg">{this.state.errors.phone}</div>
                 <input className="btn" type="submit" value="Submit" />
             </form>
