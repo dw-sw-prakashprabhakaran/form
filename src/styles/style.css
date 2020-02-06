@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 200px;
+}
+label {
+  padding: 15px;
+  font-size: 20px;
+}
+input {
+  padding: 12px;
+}
+.btn {
+  margin-top: 30px;
+  width: 100px;
+}
+
+.male,
+.female,
+.other {
+  padding: 0;
+}
+
+.errorMsg {
+  color: red;
+}
