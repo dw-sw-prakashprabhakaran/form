@@ -89,11 +89,10 @@ class App extends React.Component{
 
     handleChange=(e)=>{
         e.preventDefault();
-        const inputValue = e.target.value;
         const name = e.target.name;
         const value = {
             ...this.state.data,
-            [name] : inputValue,
+            [name] : e.target.value,
         }
         this.setState({
                 data:value,
@@ -101,12 +100,11 @@ class App extends React.Component{
     }
 
     radioButtonHandle(e){
-        const radioValue = e.target.value;
         const radioName = e.target.name;
 
         const rad = {
             ...this.state.data,
-            [radioName] : radioValue,
+            [radioName] : e.target.value,
         }
         this.setState({
                 data:rad,
@@ -122,31 +120,31 @@ class App extends React.Component{
                     First Name:
                 </label>
                 <input id="first" type="text" name="fname" value={this.state.data.fname}  onChange={this.handleChange} required />
-                <div className="errorMsg">{this.state.errors.fname}</div>
+                {this.state.errors.fname && <div className="errorMsg">{this.state.errors.fname}</div> }
                 <label  htmlFor="last">
                     Last Name:
                     
                 </label>
                 <input id="last" type="text" name="lname" value={this.state.data.lname} onChange={this.handleChange} />
-                <div className="errorMsg">{this.state.errors.lname}</div>
-                <label>
+                {this.state.errors.lname && <div className="errorMsg">{this.state.errors.lname}</div> }
+                <label htmlFor="mail-id">
                     Email:
                   
                 </label>
-                <input type="email" name="mail" value={this.state.data.mail} onChange={this.handleChange} required />
-                <div className="errorMsg">{this.state.errors.mail}</div>
-                <label>
+                <input id="mail-id" type="email" name="mail" value={this.state.data.mail} onChange={this.handleChange} required />
+                {this.state.errors.mail && <div className="errorMsg">{this.state.errors.mail}</div> }
+                <label htmlFor="pass">
                     Password:
                    
                 </label>
-                <input type="password" name="password" value={this.state.data.password} onChange={this.handleChange} required />
-                <div className="errorMsg">{this.state.errors.password}</div>
-                <label>
+                <input id="pass" type="password" name="password" value={this.state.data.password} onChange={this.handleChange} required />
+                {this.state.errors.password && <div className="errorMsg">{this.state.errors.password}</div> }
+                <label htmlFor="birth">
                     DOB:
                   
                 </label>
-                <input type="date" name="dob" value={this.state.data.dob} onChange={this.handleChange} />
-                <div className="errorMsg">{this.state.errors.dob}</div>
+                <input id="birth" type="date" name="dob" value={this.state.data.dob} onChange={this.handleChange} />
+                {this.state.errors.dob && <div className="errorMsg">{this.state.errors.dob}</div> }
                 <label>
                     Gender:
                   
@@ -163,12 +161,12 @@ class App extends React.Component{
                 <input type="radio" name="gender" value="other" id="other" onChange={this.handleChange}/>  
                     <label htmlFor="other" value="other" className="other">  other </label>
                </div>
-                <label>
+                <label htmlFor="mob">
                     Phone:
                    
                 </label>
-                <input type="tel" name="phone" value={this.state.data.phone} maxLength="10" pattern="[0-9]{10}" onChange={this.handleChange} />
-                <div className="errorMsg">{this.state.errors.phone}</div>
+                <input id="mob" type="tel" name="phone" value={this.state.data.phone} maxLength="10" pattern="[0-9]{10}" onChange={this.handleChange} />
+                {this.state.errors.phone && <div className="errorMsg">{this.state.errors.phone}</div> }
                 <input className="btn" type="submit" value="Submit" />
             </form>
          
