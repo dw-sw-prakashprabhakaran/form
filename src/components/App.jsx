@@ -26,7 +26,7 @@ class App extends React.Component{
             fields["lname"] = "";
             fields["mail"] = "";
             fields["password"] = "";
-            fields["date"] = "";
+            fields["dob"] = "";
             fields["phone"] = "";
             this.setState({data:fields});
             alert("Form submitted");
@@ -40,7 +40,21 @@ class App extends React.Component{
         let fields = this.state.data;
         let errors = {};
         let formIsValid = true;
-     
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1;
+        let yyyy = today.getFullYear();
+        
+        if(dd<10){
+          dd='0'+dd
+        }
+
+        if(mm<10){
+          mm='0'+mm
+        }
+
+        let formatted_date = yyyy+"-"+mm+"-"+dd;
+
   
         if (typeof fields["fname"] !== "undefined" || typeof fields["lname"] !== "undefined") {
           if (!fields["fname"].match(/^[a-zA-Z ]*$/) || !fields["lname"].match(/^[a-zA-Z ]*$/)) {
@@ -49,26 +63,15 @@ class App extends React.Component{
             errors["lname"] = "*Please enter alphabet characters only.";
           }
         }
-
   
-        if (typeof fields["mail"] !== "undefined") {
-          //regular expression for email validation
-          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-          if (!pattern.test(fields["mail"])) {
+
+        if (typeof fields["dob"] !== "undefined") {
+          if (formatted_date <= fields["dob"]) {
             formIsValid = false;
-            errors["mail"] = "*Please enter valid email-ID.";
-          }
+            errors["dob"] = "*Current or future date is not allowed.";
+        }
         }
 
-  
-        if (typeof fields["phone"] !== "undefined") {
-          if (!fields["phone"].match(/^[0-9]{10}$/)) {
-            formIsValid = false;
-            errors["phone"] = "*Please enter valid mobile no.";
-          }
-        }
-
-  
         if (typeof fields["password"] !== "undefined") {
           if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
             formIsValid = false;
@@ -142,28 +145,29 @@ class App extends React.Component{
                     DOB:
                   
                 </label>
-                <input type="date" name="dob" value={this.state.data.date} onChange={this.handleChange} />
+                <input type="date" name="dob" value={this.state.data.dob} onChange={this.handleChange} />
+                <div className="errorMsg">{this.state.errors.dob}</div>
                 <label>
                     Gender:
                   
                 </label>
                 <div>
-                <input type="radio" name="gender" value="male" id="male" onChange={this.handleChange}/> 
+                <input type="radio" name="gender" value={this.state.data.gender} id="male" onChange={this.handleChange}/> 
                     <label htmlFor="male" value="male" className="male">  male </label>
                 </div>
                 <div>
-                <input type="radio" name="gender" value="female" id="female" onChange={this.handleChange}/>
+                <input type="radio" name="gender" value={this.state.data.gender} id="female" onChange={this.handleChange}/>
                     <label htmlFor="female" value="female" className="female">  female </label>
                 </div>
                 <div>
-                <input type="radio" name="gender" value="other" id="other" onChange={this.handleChange}/>  
+                <input type="radio" name="gender" value={this.state.data.gender} id="other" onChange={this.handleChange}/>  
                     <label htmlFor="other" value="other" className="other">  other </label>
                </div>
                 <label>
                     Phone:
                    
                 </label>
-                <input type="number" name="phone" value={this.state.data.phone} onChange={this.handleChange} />
+                <input type="tel" name="phone" value={this.state.data.phone} maxLength="10" pattern="[0-9]{10}" onChange={this.handleChange} />
                 <div className="errorMsg">{this.state.errors.phone}</div>
                 <input className="btn" type="submit" value="Submit" />
             </form>
