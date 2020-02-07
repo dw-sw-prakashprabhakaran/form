@@ -118,16 +118,16 @@ class App extends React.Component{
             <>
            <form className="form" onSubmit={this.handleSubmit}>
                 
-                <label>
+                <label htmlFor="first">
                     First Name:
                 </label>
-                <input type="text" name="fname" value={this.state.data.fname}  onChange={this.handleChange} required />
+                <input id="first" type="text" name="fname" value={this.state.data.fname}  onChange={this.handleChange} required />
                 <div className="errorMsg">{this.state.errors.fname}</div>
-                <label>
+                <label  htmlFor="last">
                     Last Name:
                     
                 </label>
-                <input type="text" name="lname" value={this.state.data.lname} onChange={this.handleChange} />
+                <input id="last" type="text" name="lname" value={this.state.data.lname} onChange={this.handleChange} />
                 <div className="errorMsg">{this.state.errors.lname}</div>
                 <label>
                     Email:
@@ -152,15 +152,15 @@ class App extends React.Component{
                   
                 </label>
                 <div>
-                <input type="radio" name="gender" value={this.state.data.gender} id="male" onChange={this.handleChange}/> 
+                <input type="radio" name="gender" value="male" id="male" onChange={this.handleChange}/> 
                     <label htmlFor="male" value="male" className="male">  male </label>
                 </div>
                 <div>
-                <input type="radio" name="gender" value={this.state.data.gender} id="female" onChange={this.handleChange}/>
+                <input type="radio" name="gender" value="female" id="female" onChange={this.handleChange}/>
                     <label htmlFor="female" value="female" className="female">  female </label>
                 </div>
                 <div>
-                <input type="radio" name="gender" value={this.state.data.gender} id="other" onChange={this.handleChange}/>  
+                <input type="radio" name="gender" value="other" id="other" onChange={this.handleChange}/>  
                     <label htmlFor="other" value="other" className="other">  other </label>
                </div>
                 <label>
